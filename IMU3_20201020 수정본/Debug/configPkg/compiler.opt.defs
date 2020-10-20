@@ -1,0 +1,1 @@
+-I"C:/ti/bios_6_46_05_55/packages" -I"C:/ti/ccsv6/ccs_base" -I"C:/ti/xdctools_3_31_00_24_core/packages" -I"D:/TI_project/IMU3/Debug/configPkg/.." -IC:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6/include -Dxdc_target_types__="ti/targets/std.h" -Dxdc_target_name__=C28_float -Dxdc_cfg__xheader__="\"D:/TI_project/IMU3/Debug/configPkg/package/cfg/clock_p28FP.h\""

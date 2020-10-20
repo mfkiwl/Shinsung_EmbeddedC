@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="x-windows-949"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="configPkg" version="" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/cfg/clock_p28FP.c"/>
+    </sources>
+    <configscripts>
+        <srcFile name="D:/TI_project/IMU3/clock.cfg"/>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/cfg/clock_p28FP.mak" src="package.bld"/>
+        <srcFile name="package/cfg/clock_p28FP.o28FP.dep" src="package/cfg/clock_p28FP.c"/>
+        <srcFile name="package/cfg/clock_p28FP.dep" src="package/cfg/clock_p28FP.cfg"/>
+        <srcFile name="package/cfg/clock.x28FP.mak" src="package.bld"/>
+        <srcFile name="package/rel/configPkg.tar.dep" src="package/rel/configPkg.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="ti.targets.C28_float"
+            version="ti.targets.C28_float{1,0,6.4,6"
+            rawVersion="6.4.6"
+            platform="ti.platforms.sim28xx"
+            isa="28FP"
+            suffix="28FP"
+            rootDir="C:/ti/ccsv6/tools/compiler/ti-cgt-c2000_6.4.6"
+            os="undefined"
+            rts="ti.targets.rts2800">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="large"/>
+        </target>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    <configuration name="clock"
+        pname="clock.p28FP"
+        target="ti.targets.C28_float"
+        platform="ti.platforms.tms320x28:TMS320C28346"
+        profile="release"
+        isPartial="false"
+        xCfgScript="package/cfg/clock_p28FP.cfg"
+        xCfgPrefix="package/cfg/clock_p28FP"
+        cfgScript="D:/TI_project/IMU3/clock.cfg"
+        cfgArgs="null"
+        />
+    </configurations>
+    <executables>
+    <executable name="clock"
+        pname="clock.x28FP"
+        target="ti.targets.C28_float"
+        platform="ti.platforms.tms320x28:TMS320C28346"
+        profile="release"
+        xCfgScript="package/cfg/clock_p28FP.cfg"
+        xCfgPrefix="package/cfg/clock_p28FP"
+        cfgScript="D:/TI_project/IMU3/clock.cfg"
+        cfgArgs="null"
+        />
+    </executables>
+    <tests>
+    <test exeName="clock.x28FP"
+        args=""
+        groupName="clock.x28FP"
+        refOutput="undefined"
+        refExitCode="0"
+        execArgs=""
+        />
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="configPkg"
+        pname="configPkg.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>
