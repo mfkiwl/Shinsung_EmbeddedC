@@ -703,12 +703,12 @@ void main()
 			time_p = parsedIMUGPS[0];
 			// 자이로스코프
 			wbib[0] = parsedIMUGPS[1];
-			wbib[1] = parsedIMUGPS[2];
-			wbib[2] = parsedIMUGPS[3];
+			wbib[1] = -parsedIMUGPS[2]; // y,z축 센서값 부호 역전
+			wbib[2] = -parsedIMUGPS[3];
 			// 가속도계 입력
 			fb[0] = parsedIMUGPS[4];
-			fb[1] = parsedIMUGPS[5];
-			fb[2] = parsedIMUGPS[6];
+			fb[1] = -parsedIMUGPS[5];
+			fb[2] = -parsedIMUGPS[6];
 			// 기압계 입력
 			Baro_data = parsedIMUGPS[10];
 

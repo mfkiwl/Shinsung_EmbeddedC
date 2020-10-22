@@ -43,6 +43,7 @@ void InsKf15_updateV(double P_DB[][15], double *estX, double R[][3], double H[][
 void InsKf15_updatePV(double P_DB[][15], double *estX, double R[][6], double H[][15], double *measurement, double Pout[][15], double *updatedX);
 void InsKf15_updateHgt(double P_DB[][15], double *estX, double R[][1], double H[][15], double *measurement, double Pout[][15], double *updatedX);
 void InsKf15_updatelatlon(double P_DB[][15], double *estX, double R[][2], double H[][15], double *measurement, double Pout[][15], double *updatedX);
+void InsKf15_updatelatlonvnve(double P_DB[][15], double *estX, double R[][4], double H[][15], double *measurement, double Pout[][15], double *updatedX); ////////////////////**
 void Correction(double *estX, double *llh, double *vn, double *quat, double Cbn[][3], double *ba, double *bg);
 
 // function related to earth parameter
