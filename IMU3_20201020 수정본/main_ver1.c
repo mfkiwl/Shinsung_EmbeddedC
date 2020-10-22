@@ -197,6 +197,13 @@ void read_data()
 
 	memcpy(&parsedIMUGPS[1], r_buf, SPI_RX_BUFF_LEN - 2);
 
+	// Raw data Gyro, Accelo Y and Z -1
+	parsedIMUGPS[2] = parsedIMUGPS[2]*-1;
+	parsedIMUGPS[3] = parsedIMUGPS[3]*-1;
+
+	parsedIMUGPS[5] = parsedIMUGPS[5]*-1;
+	parsedIMUGPS[6] = parsedIMUGPS[6]*-1;
+
 	// GPS ������ ������ fake data �Է�
 	if (floor(parsedIMUGPS[11]) != 37)
 	{
@@ -414,7 +421,8 @@ int pre_process()
 		baro_tmp += Baro_data;
 
 	// 유효한 데이터 받고나서 t_align만큼 정렬
-	if (linenum - validrow == sampleHZ * t_align)
+	// if (linenum - validrow == sampleHZ * t_align)
+	if (gps_data[0] >= t_align) // pre_process를 gps 시간을 기준으로 판단
 	{
 		// ex)300초 데이터(25*300 = 7500개) 에 쓰레기 데이터가 1~50열 까지 있으면 정렬에 사용된 데이터는 51~7501 열(7501열에 GPS들어오는 첫 순간까지 정렬로 사용).
 		align_count = linenum - (validrow - 1);
@@ -422,7 +430,7 @@ int pre_process()
 		{
 			mean_acc[i] /= align_count;
 			mean_gyr[i] /= align_count;
-			// Bg_init[i] = mean_gyr[i]; // 초기 바이어스를 정렬값으로 설정
+			Bg_init[i] = mean_gyr[i]; // 초기 바이어스를 정렬값으로 설정
 			mean_BaroOffset = gps_tmp / GPS_count - baro_tmp / align_count;
 		}
 
@@ -505,8 +513,9 @@ int align_process()
 	MatMult31(INSDCMCnb, wnin, wbin);
 	MatSubtract(Wbib, wbin, 3, 1, wbnb);
 	// 10.20.10:31
-	if (gps_data[4] <= 0.2 || (linenum - validrow) <= t_finealign * sampleHZ)
-		QuatUpdate(wbnb, 0, INSQT);
+	// if (gps_data[4] <= 0.2 || (linenum - validrow) <= t_finealign * sampleHZ)
+	if (gps_data[0] <= t_finealign){} // finealign 동안 자세 업데이트 하지 않음
+		// QuatUpdate(wbnb, 0, INSQT);
 	else
 		QuatUpdate(wbnb, dt, INSQT);
 	//
@@ -568,31 +577,34 @@ int align_process()
 	if (flagGPS == 1 && gps_data[5] >= 6) // GPS정보가 같이 들어오고, 그 개수가 6개 이상일 때
 	{
 		// 10.20.10:28
-		if (linenum - validrow <= t_finealign * sampleHZ) // finealign 실행하는 정지구간, 데이터의 유효한 데이터 들어오고 나서 t_finealign만큼
+		// if (linenum - validrow <= t_finealign * sampleHZ) // finealign 실행하는 정지구간, 데이터의 유효한 데이터 들어오고 나서 t_finealign만큼
+		if(gps_data[0]<=t_finealign) // gps시간 기준으로 t_finealign 판단
 		{
-			measurement2[0] = 0;
-			measurement2[1] = 0;
-			measurement2[2] = 0;
-			measest2[0] = INSMpsVned[0];
-			measest2[1] = INSMpsVned[1];
-			measest2[2] = INSMpsVned[2];
-			MatSubtract((double *)measest2, (double *)measurement2, 3, 1, (double *)MeasurementV);
-			InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
-			Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
+			if (linenum % 20 == 0) // 20샘플당 한 번만
+			{
+				measurement2[0] = 0;
+				measurement2[1] = 0;
+				measurement2[2] = 0;
+				measest2[0] = INSMpsVned[0];
+				measest2[1] = INSMpsVned[1];
+				measest2[2] = INSMpsVned[2];
+				MatSubtract((double *)measest2, (double *)measurement2, 3, 1, (double *)MeasurementV);
+				InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
+				Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
+			}
 		}
 		else
 		{
-			gpsvel_N = gps_data[4] * cos(gps_data[6]);
-			gpsvel_E = gps_data[4] * sin(gps_data[6]);
-			if (parsedIMUGPS[12] != parsedPrevious[12] || parsedIMUGPS[13] != parsedPrevious[13] || parsedIMUGPS[14] != parsedPrevious[14]) // GPS ����ġ�� ���� ����ġ�� ��Ȯ�� ��ġ�� ���, Zupt.
-			{
+			gpsvel_N = gps_data[4] * cos(gps_data[6] * d2r); // deg -> rad
+			gpsvel_E = gps_data[4] * sin(gps_data[6] * d2r);
+			if (linenum % 20 == 0){   // 20샘플당 한번만
 				//10.19.13:36   line#583 ~ 604(592line "else if")
-				if (gps_data[4] < 0.2)
+				if (gps_data[4] <= 0.2)
 				{
 					double measurement2[3] = {0, 0, 0};
 					double measest2[3] = {INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
 					MatSubtract((double *)measest2, (double *)measurement2, 3, 1, (double *)MeasurementV);
-					InsKf15_updateV(P_DB, estX, R_zupt, H_Zupt, MeasurementV, P_DB, estX);
+					InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
 					Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
 				}
 				else if (gps_data[4] > 5)
@@ -629,7 +641,7 @@ int align_process()
 		memcpy(&parsedPrevious[0], &parsedIMUGPS[0], sizeof(double) * 16);
 	}
 
-	if ((linenum % (int)BaroIMURatio) == 0 && linenum - validrow > t_finealign * sampleHZ)
+	if ((linenum % (int)BaroIMURatio) == 0 )
 	{
 		Baro_data += mean_BaroOffset;
 		MeasurementHgt[0] = INSRadPos[2] - Baro_data;
@@ -703,12 +715,12 @@ void main()
 			time_p = parsedIMUGPS[0];
 			// 자이로스코프
 			wbib[0] = parsedIMUGPS[1];
-			wbib[1] = -parsedIMUGPS[2]; // 10.22 y,z축 센서값 부호 역전
-			wbib[2] = -parsedIMUGPS[3];
+			wbib[1] = parsedIMUGPS[2]; // 10.22 y,z축 센서값 부호 역전 -> 데이터 취득부분으로 옮김(200line)
+			wbib[2] = parsedIMUGPS[3];
 			// 가속도계 입력
 			fb[0] = parsedIMUGPS[4];
-			fb[1] = -parsedIMUGPS[5];
-			fb[2] = -parsedIMUGPS[6];
+			fb[1] = parsedIMUGPS[5];
+			fb[2] = parsedIMUGPS[6];
 			// 기압계 입력
 			Baro_data = parsedIMUGPS[10];
 
