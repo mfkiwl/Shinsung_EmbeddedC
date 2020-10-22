@@ -703,7 +703,7 @@ void main()
 			time_p = parsedIMUGPS[0];
 			// 자이로스코프
 			wbib[0] = parsedIMUGPS[1];
-			wbib[1] = -parsedIMUGPS[2]; // y,z축 센서값 부호 역전
+			wbib[1] = -parsedIMUGPS[2]; // 10.22 y,z축 센서값 부호 역전
 			wbib[2] = -parsedIMUGPS[3];
 			// 가속도계 입력
 			fb[0] = parsedIMUGPS[4];
