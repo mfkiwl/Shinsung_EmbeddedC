@@ -1,0 +1,74 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../header/Initialize.h
+common.h
+../header/common.h
+matrix.h
+../header/matrix.h
+function.h
+../header/function.h
+iostream
+-
+
+../header/ReadIMU.h
+common.h
+../header/common.h
+vector
+-
+
+../header/common.h
+iostream
+-
+math.h
+-
+
+../header/function.h
+common.h
+../header/common.h
+vector
+-
+
+../header/matrix.h
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+iostream
+-
+vector
+-
+stdint.h
+-
+
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp
+Initialize.h
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/Initialize.h
+common.h
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/common.h
+function.h
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/function.h
+ReadIMU.h
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/ReadIMU.h
+iostream
+-
+fstream
+-
+string
+-
+sstream
+-
+vector
+-
+iomanip
+-
+math.h
+/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/math.h
+
