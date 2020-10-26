@@ -38,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Shinsung::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Shinsung-Debug-13cf3cf87e264d4d6f5b.json",
+					"jsonFile" : "target-Shinsung-Debug-120aaa2aefbeaf669742.json",
 					"name" : "Shinsung",
 					"projectIndex" : 0
 				}
@@ -48,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
-		"source" : "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영"
+		"build" : "/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/build",
+		"source" : "/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 0
+		"minor" : 1
 	}
 }

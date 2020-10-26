@@ -42,14 +42,14 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-std=c++11 -g  "
+					"fragment" : "-std=c++11 -g"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header"
+					"path" : "/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/header"
 				}
 			],
 			"language" : "CXX",

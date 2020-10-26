@@ -48,15 +48,15 @@ vector
 stdint.h
 -
 
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/main.cpp
 Initialize.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/Initialize.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/Initialize.h
 common.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/common.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/common.h
 function.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/function.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/function.h
 ReadIMU.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/ReadIMU.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/ReadIMU.h
 iostream
 -
 fstream
@@ -70,21 +70,21 @@ vector
 iomanip
 -
 math.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/math.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/math.h
 
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/Initialize.cpp
 Initialize.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/Initialize.h
 function.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/function.h
 matrix.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/matrix.h
 iostream
 -
 common.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/common.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/common.h
 
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/ReadIMU.cpp
 iostream
 -
 fstream
@@ -94,17 +94,25 @@ string
 sstream
 -
 ReadIMU.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/ReadIMU.h
 vector
 -
 
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/function.cpp
 function.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/function.h
 common.h
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/common.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/common.h
 iostream
 -
 cmath
+-
+
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/matrix.cpp
+matrix.h
+/mnt/c/Users/NESL/Desktop/Shinsung_EmbeddedC/ver 1. 속도값까지 반영/source/matrix.h
+math.h
+-
+algorithm
 -
 
