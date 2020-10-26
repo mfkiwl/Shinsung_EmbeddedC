@@ -44,6 +44,7 @@ void InsKf15_updateV(float64 P_DB[][15], float64 *estX, float64 R[][3], float64 
 void InsKf15_updatePV(float64 P_DB[][15], float64 *estX, float64 R[][6], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX);
 void InsKf15_updateHgt(float64 P_DB[][15], float64 *estX, float64 R[][1], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX);
 void InsKf15_updatelatlon(float64 P_DB[][15], float64 *estX, float64 R[][2], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX);
+void InsKf15_updatezupt(float64 P_DB[][15], float64 *estX, float64 R[][5], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX);
 void InsKf15_updatelatlonvnve(float64 P_DB[][15], float64 *estX, float64 R[][4], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX); ////////////////////**
 void Correction(float64 *estX, float64 *llh, float64 *vn, float64 *quat, float64 Cbn[][3], float64 *ba, float64 *bg);
 

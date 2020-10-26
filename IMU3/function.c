@@ -743,6 +743,46 @@ void InsKf15_updatelatlonvnve(float64 P_DB[][15], float64 *estX, float64 R[][4],
     VecSum((float64 *)estX, (float64 *)updatedX_tmp, 15, (float64 *)updatedX);
 }
 
+void InsKf15_updatezupt(float64 P_DB[][15], float64 *estX, float64 R[][5], float64 H[][15], float64 *measurement, float64 Pout[][15], float64 *updatedX) 
+{
+    float64 eyevec[15] = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+    float64 eyemat[15][15] = {0};
+    float64 K[15][5], Ktmp1[15][5], K_T[5][15] = {0};
+    float64 HPb[5][15], H_T[15][5] = {0};
+    float64 invtmp1[5][5], invtmp2[5][5], inverse[5][5] = {0};
+    float64 eyeminusKH[15][15], eyeminusKH_tmp[15][15], eyeminusKH_T[15][15] = {0};
+    float64 KRK[15][15], KRK_tmp1[15][5] = {0};
+    float64 updatedP_tmp[15][15], updatedP_tmp2[15][15] = {0};
+    float64 Hx[5], residual[5], updatedX_tmp[15] = {0};
+
+    // calculating Kalman gain
+    diag((float64 *)eyevec, 15, (float64 *)eyemat);
+    MatMult((float64 *)H, (float64 *)P_DB, (float64 *)HPb, 5, 15, 15);
+    transpose((float64 *)H, (float64 *)H_T, 5, 15);
+    MatMult((float64 *)HPb, (float64 *)H_T, (float64 *)invtmp1, 5, 15, 5);
+    MatSum((float64 *)invtmp1, (float64 *)R, 5, 5, (float64 *)invtmp2);
+    inv_mat((float64 *)invtmp2, (float64 *)inverse, 5);
+    MatMult((float64 *)P_DB, (float64 *)H_T, (float64 *)Ktmp1, 15, 15, 5);
+    MatMult((float64 *)Ktmp1, (float64 *)inverse, (float64 *)K, 15, 5, 5);
+
+    // calculating updated P
+    MatMult((float64 *)K, (float64 *)H, (float64 *)eyeminusKH_tmp, 15, 5, 15);
+    MatSubtract((float64 *)eyemat, (float64 *)eyeminusKH_tmp, 15, 15, (float64 *)eyeminusKH);
+    transpose((float64 *)eyeminusKH, (float64 *)eyeminusKH_T, 15, 15);
+    transpose((float64 *)K, (float64 *)K_T, 15, 5);
+    MatMult((float64 *)K, (float64 *)R, (float64 *)KRK_tmp1, 15, 5, 5);
+    MatMult((float64 *)KRK_tmp1, (float64 *)K_T, (float64 *)KRK, 15, 5, 15);
+    MatMult((float64 *)eyeminusKH, (float64 *)P_DB, (float64 *)updatedP_tmp, 15, 15, 15);
+    MatMult((float64 *)updatedP_tmp, (float64 *)eyeminusKH_T, (float64 *)updatedP_tmp2, 15, 15, 15);
+    MatSum((float64 *)updatedP_tmp2, (float64 *)KRK, 15, 15, (float64 *)Pout);
+
+    // calculating updated state
+    MatMult((float64 *)H, (float64 *)estX, (float64 *)Hx, 5, 15, 1);
+    MatSubtract((float64 *)measurement, (float64 *)Hx, 5, 1, (float64 *)residual);
+    MatMult((float64 *)K, (float64 *)residual, (float64 *)updatedX_tmp, 15, 5, 1);
+    VecSum((float64 *)estX, (float64 *)updatedX_tmp, 15, (float64 *)updatedX);
+}
+
 void Correction(float64 *estX, float64 *llh, float64 *vn, float64 *quat, float64 Cbn[][3], float64 *ba, float64 *bg)
 {
     // bias ���Ǹ� �ݴ�� ����� ������(estimated F,Wbib = true - bias -> true = estimated + bias) correction�� ���� �ٿ���

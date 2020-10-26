@@ -13,6 +13,8 @@ float64 R_latlon[2][2]; //32bit
 float64 R_PV[6][6];
 float64 R_zupt[3][3];	   // 10.19.13:22
 float64 R_zupt2[3][3];	   //10.20.10:24
+float64 R_zupt3[5][5];
+float64 R_yaw[1][1];
 float64 R_latlonvnve[4][4]; //
 float64 P_DB[15][15];
 float64 Qvec[6];
@@ -21,6 +23,8 @@ float64 H_PV[6][15];
 float64 H_latlonVnVe[4][15]; // 10.20.10:43
 float64 H_Zupt[3][15];		// 10.19.13:22
 float64 H_hgt[1][15];
+float64 H_Zupt3[5][15];
+float64 H_yaw[1][15];
 float64 F[15][15];
 float64 PHI[15][15];
 float64 R_hgt[1][1];
@@ -37,6 +41,7 @@ float64 Fb[3], Wbib[3], fn[3] = {0};
 float64 MeasurementPV[6], Measurementlatlon[2] = {0}; // 중력 벡터   // 10.20.10:40
 float64 Measurementlatlonvnve[4] = {0};
 float64 MeasurementV[3] = {0}; //10.19.13:28
+float64 MeasurementZupt[5] = {0};
 float64 g[3] = {0};
 // meridian radius of curvature, transverse radius of curvature
 float64 rm, rp = 0;
@@ -227,11 +232,15 @@ void init_data_00()
 	memset(P_DB, 0x0, sizeof(float64) * 15 * 15);
 	memset(R_zupt, 0x0, sizeof(float64) * 3 * 3);  //10.19.13:24
 	memset(R_zupt2, 0x0, sizeof(float64) * 3 * 3); //10.20.10:25
+	memset(R_zupt3,0x0, sizeof(float64) * 5 * 5);
+	memset(R_yaw,0x0, sizeof(float64) * 2); // 246 line과 비교
 	memset(Qvec, 0x0, sizeof(float64) * 6);
 	memset(H_latlon, 0x0, sizeof(float64) * 2 * 15);
 	memset(H_latlonVnVe, 0x0, sizeof(float64) * 4 * 15);
 	memset(H_PV, 0x0, sizeof(float64) * 6 * 15);
 	memset(H_Zupt, 0x0, sizeof(float64) * 3 * 15); // 10.19.13:28
+	memset(H_Zupt3,0x0, sizeof(float64) * 5 * 15);
+	memset(H_yaw, 0x0, sizeof(float64) * 1 * 15);
 	memset(H_hgt, 0x0, sizeof(float64) * 1 * 15);
 	memset(F, 0x0, sizeof(float64) * 15 * 15);
 	memset(PHI, 0x0, sizeof(float64) * 15 * 15);
@@ -270,6 +279,7 @@ void init_data_00()
 	memset(MeasurementV, 0x0, sizeof(float64) * 3); // 10.19.13:30
 	memset(MeasurementPV, 0x0, sizeof(float64) * 6);
 	memset(Measurementlatlon, 0x0, sizeof(float64) * 2); // 10.20.10:42
+	memset(MeasurementZupt, 0x0, sizeof(float64) * 5);
 
 	memset(g, 0x0, sizeof(float64) * 3);
 
@@ -311,16 +321,19 @@ void init_data_01()
 	float64 R_vec3[4] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000), noise_v, noise_v}; //
 	float64 R_vec4[3] = {noise_v, noise_v, noise_v};											 //10.20.10:26
 	float64 R_vec5[3] = {noise_v * 2, noise_v * 2, noise_v * 2};								 //10.19.13:30
+	float64 R_vec6[5] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000), noise_v, noise_v, noise_v};
 	Velwisesquare(R_vec2, 6, R_vec2);
 	Velwisesquare(R_vec, 2, R_vec);
 	Velwisesquare(R_vec3, 4, R_vec3); //
 	Velwisesquare(R_vec4, 3, R_vec4); //10.19.13:30
 	Velwisesquare(R_vec5, 3, R_vec5); //10.20.10:26
+	Velwisesquare(R_vec6, 5, R_vec6);
 	diag(R_vec, 2, (float64 *)R_latlon);
 	diag(R_vec2, 6, (float64 *)R_PV);
 	diag(R_vec3, 4, (float64 *)R_latlonvnve);
-	diag(R_vec4, 3, (float64 *)R_zupt);	// 10.19.13:30
-	diag(R_vec5, 3, (float64 *)R_zupt2); //10.20.10:26
+	diag(R_vec4, 3, (float64 *)R_zupt);	
+	diag(R_vec5, 3, (float64 *)R_zupt2); 
+	diag(R_vec6, 5, (float64 *)R_zupt3);
 }
 
 void init_data_02()
@@ -361,6 +374,7 @@ void init_data_03()
 void init_data_04()
 {
 	R_hgt[0][0] = pow(noise_baro_h, 2);
+	R_yaw[0][0] = pow((0.5*d2r),2);
 
 	H_latlon[0][0] = 1;
 	H_latlon[1][1] = 1;
@@ -380,6 +394,14 @@ void init_data_04()
 	H_latlonVnVe[1][1] = 1; //
 	H_latlonVnVe[2][3] = 1; //
 	H_latlonVnVe[3][4] = 1; //
+
+	H_Zupt3[0][0] = 1;
+    H_Zupt3[1][1] = 1;
+    H_Zupt3[2][3] = 1;
+    H_Zupt3[3][4] = 1;
+    H_Zupt3[4][5] = 1;
+
+	H_yaw[0][8] = -1;
 }
 
 // align 전 데이터 처리
@@ -496,8 +518,11 @@ int align_process()
 	float64 measurement3[2]; //
 	float64 measurement4[4];
 	float64 measest3[2];
+	float64 measurement5[5];
+	float64 measest5[5];
 
 	float64 MeasurementHgt[1];
+	float64 MeasurementYaw[1];
 
 	MatSubtract(fb, Ba, 3, 1, Fb);
 	MatSubtract(wbib, Bg, 3, 1, Wbib);
@@ -507,10 +532,10 @@ int align_process()
 
 	// 10.20.10:31
 	//if (gps_data[4] <= 0.2 || (linenum - validrow) <= t_finealign * sampleHZ)
-	//if (gps_data[0] <= t_finealign){} // finealign 동안 자세 업데이트 하지 않음
-		// QuatUpdate(wbnb, 0, INSQT);
-	//else
-	//	QuatUpdate(wbnb, dt, INSQT);
+	if (linenum - validrow <= sampleHZ * t_finealign){} // finealign 동안 자세 업데이트 하지 않음
+		QuatUpdate(wbnb, 0, INSQT);
+	else
+		QuatUpdate(wbnb, dt, INSQT);
 	//
 	// QuatUpdate(wbnb, dt, INSQT);
 
@@ -577,14 +602,18 @@ int align_process()
 		{
 			if (linenum % 20 == 0) // 20샘플당 한 번만
 			{
-				measurement2[0] = 0;
-				measurement2[1] = 0;
-				measurement2[2] = 0;
-				measest2[0] = INSMpsVned[0];
-				measest2[1] = INSMpsVned[1];
-				measest2[2] = INSMpsVned[2];
-				MatSubtract((float64 *)measest2, (float64 *)measurement2, 3, 1, (float64 *)MeasurementV);
-				InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
+				measurement5[0] = gps_data[1];
+				measurement5[1] = gps_data[2];
+				measurement5[2] = 0;
+				measurement5[3] = 0;
+				measurement5[4] = 0;
+				measest5[0] = INSRadPos[0];
+				measest5[1] = INSRadPos[1];
+				measest5[2] = INSMpsVned[0];
+				measest5[1] = INSMpsVned[1];
+				measest5[2] = INSMpsVned[2];
+				MatSubtract((float64 *)measest5, (float64 *)measurement5, 5, 1, (float64 *)MeasurementZupt);
+				InsKf15_updateV(P_DB, estX, R_zupt3, H_Zupt3, MeasurementZupt, P_DB, estX);
 				Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
 			}
 		}
@@ -594,37 +623,25 @@ int align_process()
 			gpsvel_E = gps_data[4] * sin(gps_data[6] * d2r);
 			if (linenum % 20 == 0){   // 20샘플당 한번만
 				//10.19.13:36   line#583 ~ 604(592line "else if")
-				if (gps_data[4] <= 0.2)
+				measurement4[0] = gps_data[1];
+				measurement4[1] = gps_data[2];
+				measurement4[2] = gpsvel_N;
+				measurement4[3] = gpsvel_E;
+				measest4[0] = INSRadPos[0];
+				measest4[1] = INSRadPos[1];
+				measest4[2] = INSMpsVned[0];
+				measest4[3] = INSMpsVned[1];
+				MatSubtract((float64 *)measest4, (float64 *)measurement4, 4, 1, (float64 *)Measurementlatlonvnve);
+				InsKf15_updatelatlonvnve(P_DB, estX, R_latlonvnve, H_latlonVnVe, Measurementlatlonvnve, P_DB, estX);
+				Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
+				if ((sqrt(pow(Wbib[0], 2) + pow(Wbib[1], 2) + pow(Wbib[2], 2)) < 2 * d2r) && (gps_data[4] >= 5))
 				{
-					float64 measurement2[3] = {0, 0, 0};
-					float64 measest2[3] = {INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-					MatSubtract((float64 *)measest2, (float64 *)measurement2, 3, 1, (float64 *)MeasurementV);
-					InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
-					Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-				}
-				else if (gps_data[4] > 5)
-				{
-					measurement4[0] = gps_data[1];
-					measurement4[1] = gps_data[2];
-					measurement4[2] = gpsvel_N;
-					measurement4[3] = gpsvel_E;
-					measest4[0] = INSRadPos[0];
-					measest4[1] = INSRadPos[1];
-					measest4[2] = INSMpsVned[0];
-					measest4[3] = INSMpsVned[1];
-					MatSubtract((float64 *)measest4, (float64 *)measurement4, 4, 1, (float64 *)Measurementlatlonvnve);
-					InsKf15_updatelatlonvnve(P_DB, estX, R_latlonvnve, H_latlonVnVe, Measurementlatlonvnve, P_DB, estX);
-					Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-				}
-				else
-				{
-					measurement3[0] = gps_data[1];
-					measurement3[1] = gps_data[2];
-					measest3[0] = INSRadPos[0];
-					measest3[1] = INSRadPos[1];
-
-					MatSubtract((float64 *)measest3, (float64 *)measurement3, 2, 1, (float64 *)Measurementlatlon);
-					InsKf15_updatelatlon(P_DB, estX, R_latlon, H_latlon, Measurementlatlon, P_DB, estX);
+					MeasurementYaw = INSRadEulr[2] - gps_data[6]*d2r;
+					for (int yidx = 0; yidx < 3; yidx++)
+					{
+						MeasurementYaw[0] = MeasurementYaw[0] - (MeasurementYaw[0] > PI) * (2 * PI) - (MeasurementYaw[0] < -PI) * (-2 * PI);
+					}
+					InsKf15_updateHgt(P_DB, estX, R_yaw, H_yaw, MeasurementYaw, P_DB, estX);
 					Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
 				}
 			}

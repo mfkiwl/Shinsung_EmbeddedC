@@ -25,9 +25,9 @@
 // IMU, aiding sensor(mag,baro,gps) specification ==================
 // IMU
 #define sampleHZ (float64)(20.0)
-#define g_repeatability (float64)(1 * d2r)
+#define g_repeatability (float64)(25 * dph2rps)
 #define g_ARW (float64)(0.014 * d2r)
-#define a_repeatability (float64)(30 * mg)
+#define a_repeatability (float64)(3 * mg)
 #define a_ARW (float64)(0.23 * mg)
 #define dt (float64)(1. / sampleHZ)
 // Magnetometer
@@ -42,9 +42,9 @@
 // #define noise_hp (float64)(0.01)
 // #define noise_vp (float64)(0.02)
 // #define noise_v (float64)(0.05)
-#define noise_hp (float64)(0.05) //10.20.10:38
-#define noise_vp (float64)(1)
-#define noise_v (float64)(0.1)
+#define noise_hp (float64)(0.1) //10.20.10:38
+#define noise_vp (float64)(0.2)
+#define noise_v (float64)(0.05)
 
 //======================================================================
 #define t_align 120     // coarse align 시간 2분   //
