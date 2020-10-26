@@ -6,5 +6,5 @@ CXX_FLAGS = -std=c++11 -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header" 
+CXX_INCLUDES = -I"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header" 
 

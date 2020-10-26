@@ -68,10 +68,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build"
+CMAKE_BINARY_DIR = "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target

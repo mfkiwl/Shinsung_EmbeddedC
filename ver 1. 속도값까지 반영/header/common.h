@@ -28,9 +28,9 @@ const double PI = 3.141592653589793238463;
 // IMU, aiding sensor(mag,baro,gps) specification ==================
 // IMU
 #define sampleHZ (double)(20.0)
-#define g_repeatability (double)(1 * d2r)
+#define g_repeatability (double)(25 * dph2rps)
 #define g_ARW (double)(0.014 * d2r)
-#define a_repeatability (double)(30 * mg)
+#define a_repeatability (double)(3 * mg)
 #define a_ARW (double)(0.23 * mg)
 #define dt (double)(1. / sampleHZ)
 // Magnetometer
@@ -45,12 +45,12 @@ const double PI = 3.141592653589793238463;
 // #define noise_hp (double)(0.05)
 // #define noise_vp (double)(0.1)
 // #define noise_v (double)(0.05)
-#define noise_hp (double)(0.05)
+#define noise_hp (double)(0.1)
 // #define noise_vp (double)(0.1)
-#define noise_vp (double)(1)
-#define noise_v (double)(0.1)
+#define noise_vp (double)(0.2)
+#define noise_v (double)(0.05)
 //======================================================================
 #define t_align 120     // 정렬시간 5분
-#define t_finealign 300 // 정지구간 GPS 결합, t_align 끝난 시점부터 (300~470초)
+#define t_finealign 480 // 정지구간 GPS 결합, t_align 끝난 시점부터 (300~470초)
 //
 #endif

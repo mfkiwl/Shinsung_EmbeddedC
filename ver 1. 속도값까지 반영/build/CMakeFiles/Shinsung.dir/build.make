@@ -63,10 +63,10 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영"
+CMAKE_SOURCE_DIR = "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build"
+CMAKE_BINARY_DIR = "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Shinsung.dir/depend.make
@@ -79,68 +79,68 @@ include CMakeFiles/Shinsung.dir/flags.make
 
 CMakeFiles/Shinsung.dir/main.cpp.o: CMakeFiles/Shinsung.dir/flags.make
 CMakeFiles/Shinsung.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Shinsung.dir/main.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/main.cpp.o -c "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Shinsung.dir/main.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/main.cpp.o -c "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp"
 
 CMakeFiles/Shinsung.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Shinsung.dir/main.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp" > CMakeFiles/Shinsung.dir/main.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp" > CMakeFiles/Shinsung.dir/main.cpp.i
 
 CMakeFiles/Shinsung.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Shinsung.dir/main.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp" -o CMakeFiles/Shinsung.dir/main.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp" -o CMakeFiles/Shinsung.dir/main.cpp.s
 
 CMakeFiles/Shinsung.dir/source/function.cpp.o: CMakeFiles/Shinsung.dir/flags.make
 CMakeFiles/Shinsung.dir/source/function.cpp.o: ../source/function.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Shinsung.dir/source/function.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/function.cpp.o -c "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/function.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Shinsung.dir/source/function.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/function.cpp.o -c "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp"
 
 CMakeFiles/Shinsung.dir/source/function.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Shinsung.dir/source/function.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/function.cpp" > CMakeFiles/Shinsung.dir/source/function.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp" > CMakeFiles/Shinsung.dir/source/function.cpp.i
 
 CMakeFiles/Shinsung.dir/source/function.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Shinsung.dir/source/function.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/function.cpp" -o CMakeFiles/Shinsung.dir/source/function.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp" -o CMakeFiles/Shinsung.dir/source/function.cpp.s
 
 CMakeFiles/Shinsung.dir/source/matrix.cpp.o: CMakeFiles/Shinsung.dir/flags.make
 CMakeFiles/Shinsung.dir/source/matrix.cpp.o: ../source/matrix.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Shinsung.dir/source/matrix.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/matrix.cpp.o -c "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/matrix.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Shinsung.dir/source/matrix.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/matrix.cpp.o -c "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.cpp"
 
 CMakeFiles/Shinsung.dir/source/matrix.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Shinsung.dir/source/matrix.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/matrix.cpp" > CMakeFiles/Shinsung.dir/source/matrix.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.cpp" > CMakeFiles/Shinsung.dir/source/matrix.cpp.i
 
 CMakeFiles/Shinsung.dir/source/matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Shinsung.dir/source/matrix.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/matrix.cpp" -o CMakeFiles/Shinsung.dir/source/matrix.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.cpp" -o CMakeFiles/Shinsung.dir/source/matrix.cpp.s
 
 CMakeFiles/Shinsung.dir/source/Initialize.cpp.o: CMakeFiles/Shinsung.dir/flags.make
 CMakeFiles/Shinsung.dir/source/Initialize.cpp.o: ../source/Initialize.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Shinsung.dir/source/Initialize.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.o -c "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/Initialize.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Shinsung.dir/source/Initialize.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.o -c "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp"
 
 CMakeFiles/Shinsung.dir/source/Initialize.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Shinsung.dir/source/Initialize.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/Initialize.cpp" > CMakeFiles/Shinsung.dir/source/Initialize.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp" > CMakeFiles/Shinsung.dir/source/Initialize.cpp.i
 
 CMakeFiles/Shinsung.dir/source/Initialize.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Shinsung.dir/source/Initialize.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/Initialize.cpp" -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp" -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.s
 
 CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o: CMakeFiles/Shinsung.dir/flags.make
 CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o: ../source/ReadIMU.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o"
-	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o -c "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/ReadIMU.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o"
+	/usr/bin/g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o -c "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp"
 
 CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.i"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/ReadIMU.cpp" > CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.i
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp" > CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.i
 
 CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.s"
-	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/ReadIMU.cpp" -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.s
+	/usr/bin/g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp" -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.s
 
 # Object files for target Shinsung
 Shinsung_OBJECTS = \
@@ -160,7 +160,7 @@ Shinsung: CMakeFiles/Shinsung.dir/source/Initialize.cpp.o
 Shinsung: CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o
 Shinsung: CMakeFiles/Shinsung.dir/build.make
 Shinsung: CMakeFiles/Shinsung.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Shinsung"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Shinsung"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Shinsung.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -173,6 +173,6 @@ CMakeFiles/Shinsung.dir/clean:
 .PHONY : CMakeFiles/Shinsung.dir/clean
 
 CMakeFiles/Shinsung.dir/depend:
-	cd "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build" "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/CMakeFiles/Shinsung.dir/DependInfo.cmake" --color=$(COLOR)
+	cd "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build" "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles/Shinsung.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Shinsung.dir/depend
 

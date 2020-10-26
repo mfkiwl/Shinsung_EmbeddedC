@@ -16,7 +16,7 @@ int main()
     // Initializing(filter) P, Q, R, H ,F declaration
     double pos_err_deviation[3] = {km2rad(5 * 1e-3), km2rad(5 * 1e-3), 10};
     double vel_err_deviation[3] = {noise_v, noise_v, noise_v};
-    double att_err_deviation[3] = {a_repeatability / 9.81, a_repeatability / 9.81, 5 * d2r}; //07.27.19:26 debug complete.
+    double att_err_deviation[3] = {a_repeatability / 9.81, a_repeatability / 9.81, g_repeatability * mg / We / cos(36 * d2r)}; //07.27.19:26 debug complete.
     double hgt_err_deviation = noise_baro_h;
     double Ppos[3];
     double Pvel[3];
@@ -28,7 +28,7 @@ int main()
     // VecScalarMult(Qwg, 0.1, Qwg, 3); // tuning parameter
     double Qvec[6] = {Qwa[0], Qwa[1], Qwa[2], Qwg[0], Qwg[1], Qwg[2]};
     double P_DB[15][15] = {0};
-    double H_latlon[2][15], H_NHC[2][15], H_PV[6][15], H_Zupt[3][15], H_hgt[1][15], H_latlonVnVe[4][15] = {0}; // 위도경도가 측정치일 때, 위치속도가 측정치일 때, Zupt, 고도가 측정치일 때 자코비안
+    double H_latlon[2][15], H_NHC[2][15], H_PV[6][15], H_Zupt[3][15], H_Zupt3[5][15], H_yaw[1][15], H_hgt[1][15], H_latlonVnVe[4][15] = {0}; // 위도경도가 측정치일 때, 위치속도가 측정치일 때, Zupt, 고도가 측정치일 때 자코비안
     double gpsvel_N = 0;
     double gpsvel_E = 0;
     double subcount = 0;
@@ -37,6 +37,7 @@ int main()
     H_NHC[0][0] = 1;
     H_NHC[1][1] = 1;
     H_hgt[0][2] = 1;
+    H_yaw[0][8] = -1;
     H_PV[0][0] = 1;
     H_PV[1][1] = 1;
     H_PV[2][2] = 1;
@@ -50,32 +51,42 @@ int main()
     H_Zupt[0][3] = 1;
     H_Zupt[1][4] = 1;
     H_Zupt[2][5] = 1;
+    H_Zupt3[0][0] = 1;
+    H_Zupt3[1][1] = 1;
+    H_Zupt3[2][3] = 1;
+    H_Zupt3[3][4] = 1;
+    H_Zupt3[4][5] = 1;
     double R_latlon[2][2];
     double R_NHC[2][2];
     double R_latlonvnve[4][4];
     double R_PV[6][6];
     double R_vec[2] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000)};
     double R_hgt[1][1] = {pow(noise_baro_h, 2)};
+    double R_yaw[1][1] = {pow((0.5 * d2r), 2)};
     double R_zupt[3][3] = {0};
     double R_zupt2[3][3] = {0};
+    double R_zupt3[5][5] = {0};
     double F[15][15], PHI[15][15] = {0};
     double R_vec2[6] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000), noise_vp, noise_v, noise_v, noise_v};
     double R_vec3[4] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000), noise_v, noise_v};
     double R_vec4[3] = {noise_v, noise_v, noise_v};
     double R_vec5[2] = {noise_v, noise_v};
     double R_vec6[3] = {noise_v * 2, noise_v * 2, noise_v * 2};
+    double R_vec7[5] = {km2rad(noise_hp / 1000), km2rad(noise_hp / 1000), noise_v, noise_v, noise_v};
     Velwisesquare(R_vec2, 6, R_vec2);
     Velwisesquare(R_vec, 2, R_vec);
     Velwisesquare(R_vec3, 4, R_vec3);
     Velwisesquare(R_vec4, 3, R_vec4);
     Velwisesquare(R_vec5, 2, R_vec5);
     Velwisesquare(R_vec6, 3, R_vec6);
+    Velwisesquare(R_vec7, 5, R_vec7);
     diag(R_vec, 2, (double *)R_latlon);
     diag(R_vec2, 6, (double *)R_PV);
     diag(R_vec3, 4, (double *)R_latlonvnve);
     diag(R_vec4, 3, (double *)R_zupt);
     diag(R_vec5, 2, (double *)R_NHC);
     diag(R_vec6, 3, (double *)R_zupt2);
+    diag(R_vec7, 5, (double *)R_zupt3);
     Velwisesquare(pos_err_deviation, 3, Ppos);
     Velwisesquare(vel_err_deviation, 3, Pvel);
     Velwisesquare(att_err_deviation, 3, Patt);
@@ -90,9 +101,12 @@ int main()
     double MeasurementPV[6], Measurementlatlon[2] = {0}, MeasurementHgt = 0; // 위치,속도만 사용하는 경우, 위도,경도만 사용하는 경우, 고도만 사용하는 경우 EKF의 측정치 (delta 측정치)
     double Measurementlatlonvnve[4] = {0};
     double MeasurementNHC[2] = {0};
+    double MeasurementZupt[5] = {0};
     double MeasurementV[3] = {0};
+    double MeasurementYaw = 0;
     double g[3] = {0}; // 중력 벡터
     double rm, rp = 0; // meridian radius of curvature, transverse radius of curvature
+    double firsttime = 0;
     //
     // read data
     CheckInputFile();
@@ -111,16 +125,17 @@ int main()
     vector<double> parsedIMUGPS;          // 동적 array, GPS 데이터 섞일 때마다 데이터의 길이가 달라지므로 사용함
     vector<double> parsedPrevious(17, 0); // Zupt실행을 위해 이전 GPS값끼리 비교하기 위한 변수, 0으로 초기화해서 정의.
     // IMUGPSfile.open("../imu20201016_v2.txt");
-    IMUGPSfile.open("../imu_V2_201021.txt");
+    // IMUGPSfile.open("../imu_V2_201021.txt");
+    IMUGPSfile.open("../imu20201023_BMI.txt");
     // IMUGPSfile.open("../parsed.txt");
     // IMUGPSfile.open("../imu20200923.txt");
     // RTKGPSfile.open("20191023_RTKGPS.txt");
     //
     // write data
     ofstream EstResult("../result_posvel.txt");
-    ofstream myGPS("../mygps.txt");
-    ofstream myhgt("../altimeter.txt");
-    ofstream myvel("../myvel.txt");
+    // ofstream myGPS("../mygps.txt");
+    // ofstream myhgt("../altimeter.txt");
+    // ofstream myvel("../myvel.txt");
     if (!EstResult.is_open())
         cout << "output file is not opened!" << endl;
     if (IMUGPSfile.is_open())
@@ -140,6 +155,7 @@ int main()
                     {
                         dataisincorrect = false;
                         cout << "The first non-trash value is at " << linenum << "th row" << endl;
+                        firsttime = parsedIMUGPS[0];
                         validrow = linenum;
                     }
                 }
@@ -158,7 +174,7 @@ int main()
                 fb[1] = parsedIMUGPS[5];
                 fb[2] = parsedIMUGPS[6];
                 Baro_data = parsedIMUGPS[10]; // 기압계 입력
-                myhgt << Baro_data << endl;
+                // myhgt << Baro_data << endl;
                 if (parsedIMUGPS.size() == 17)
                 {
                     gps_data[0] = parsedIMUGPS[0];                  // GPS 시간
@@ -171,7 +187,7 @@ int main()
                 }
                 gpsvel_N = gps_data[4] * cos(gps_data[6] * d2r);
                 gpsvel_E = gps_data[4] * sin(gps_data[6] * d2r);
-                myvel << gpsvel_N << " " << gpsvel_E << endl;
+                // myvel << gpsvel_N << " " << gpsvel_E << endl;
                 if (!aligned)
                 {
                     for (int i = 0; i < 3; i++)
@@ -188,7 +204,7 @@ int main()
                     else
                         baro_tmp += Baro_data;
                     // if (((linenum - 1) / 3 + 1) - validrow == sampleHZ * t_align) // 유효한 데이터 받고나서 t_align만큼 정렬
-                    if (gps_data[0] >= t_align) // 유효한 데이터 받고나서 t_align만큼 정렬  10.21.11:13
+                    if (gps_data[0] >= firsttime + t_align) // 유효한 데이터 받고나서 t_align만큼 정렬  10.21.11:13
                     {
                         double align_count = (linenum + 2) / 3 - (validrow - 1); // ex)300초 데이터(25*300 = 7500개) 에 쓰레기 데이터가 1~50열 까지 있으면 정렬에 사용된 데이터는 51~7501 열(7501열에 GPS들어오는 첫 순간까지 정렬로 사용).
                         // double align_count = 1;
@@ -260,7 +276,7 @@ int main()
                     MatSubtract(Wbib, wbin, 3, 1, wbnb);
                     // if (((linenum - 1) / 3 + 1) - validrow <= t_finealign * sampleHZ)
                     // if (gps_data[4] <= 0.2 || ((linenum - 1) / 3 + 1) - validrow <= t_finealign * sampleHZ)
-                    if (gps_data[0] <= t_finealign)
+                    if (gps_data[0] <= firsttime + t_finealign)
                     {
                     }
                     // QuatUpdate(wbnb, 0, INSQT);
@@ -322,83 +338,46 @@ int main()
                         // vector<double> PV_now(&parsedIMUGPS[12], &parsedIMUGPS[14]);
                         // vector<double> PV_previous(&parsedPrevious[12], &parsedPrevious[14]);
                         // if (((linenum - 1) / 3 + 1) - validrow <= t_finealign * sampleHZ) // finealign 실행하는 정지구간, 데이터의 유효한 데이터 들어오고 나서 t_finealign만큼
-                        if (gps_data[0] <= t_finealign) // finealign 실행하는 정지구간, 데이터의 유효한 데이터 들어오고 나서 t_finealign만큼
+                        if (gps_data[0] <= firsttime + t_finealign) // finealign 실행하는 정지구간, 데이터의 유효한 데이터 들어오고 나서 t_finealign만큼
                         {
                             if ((linenum + 2) % 60 == 0)
                             {
-                                subcount++;
-                                // double measurement1[6] = {gps_data[1], gps_data[2], gps_data[3], 0, 0, 0};
-                                // double measest1[6] = {INSRadPos[0], INSRadPos[1], INSRadPos[2], INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-                                // MatSubtract((double *)measest1, (double *)measurement1, 6, 1, (double *)MeasurementPV);
-                                // InsKf15_updatePV(P_DB, estX, R_PV, H_PV, MeasurementPV, P_DB, estX);
-                                // Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-                                double measurement2[3] = {0, 0, 0};
-                                double measest2[3] = {INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-                                MatSubtract((double *)measest2, (double *)measurement2, 3, 1, (double *)MeasurementV);
-                                InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
+                                double measurement2[5] = {gps_data[1], gps_data[2], 0, 0, 0};
+                                double measest2[5] = {INSRadPos[0], INSRadPos[1], INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
+                                MatSubtract((double *)measest2, (double *)measurement2, 5, 1, (double *)MeasurementZupt);
+                                InsKf15_updatezupt(P_DB, estX, R_zupt3, H_Zupt3, MeasurementZupt, P_DB, estX);
                                 Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
                             }
                         }
                         else
                         {
-                            // if (equal(&parsedIMUGPS[12], &parsedIMUGPS[14], &parsedPrevious[12])) // GPS 측정치가 이전 측정치와 정확히 겹치는 경우, Zupt.
-                            // if (parsedIMUGPS[12] == parsedPrevious[12]) // GPS 측정치가 이전 측정치와 정확히 겹치는 경우, Zupt.
                             if ((linenum + 2) % 60 != 0)
                             {
-                                // if (linenum / 600 == 0)
-                                // {
-                                // double measurement2[6] = {gps_data[1], gps_data[2], gps_data[3], 0, 0, 0};
-                                // double measest2[6] = {INSRadPos[0], INSRadPos[1], INSRadPos[2], INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-                                // MatSubtract((double *)measest2, (double *)measurement2, 6, 1, (double *)MeasurementPV);
-                                // InsKf15_updatePV(P_DB, estX, R_PV, H_Zupt, MeasurementPV, P_DB, estX);
-                                // Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-                                // }
                             }
                             else // GPS의 위치, 속도만 사용 후 고도 정보는 barometer 사용
                             {
-                                myGPS << setprecision(10) << fixed << scientific << gps_data[0] << " " << gps_data[1] << " " << gps_data[2] << " "
-                                      << gps_data[3] << " " << gps_data[4] << endl;
-                                if (gps_data[4] <= 0.2)
+                                double measurement4[4] = {gps_data[1], gps_data[2], gpsvel_N, gpsvel_E};
+                                double measest4[4] = {INSRadPos[0], INSRadPos[1], INSMpsVned[0], INSMpsVned[1]};
+                                MatSubtract((double *)measest4, (double *)measurement4, 4, 1, (double *)Measurementlatlonvnve);
+                                InsKf15_updatelatlonvnve(P_DB, estX, R_latlonvnve, H_latlonVnVe, Measurementlatlonvnve, P_DB, estX);
+                                Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
+                                // }
+                                if ((sqrt(pow(Wbib[0], 2) + pow(Wbib[1], 2) + pow(Wbib[2], 2)) < 2 * d2r) && (gps_data[4] >= 5))
                                 {
-                                    // double measurement2[6] = {gps_data[1], gps_data[2], gps_data[3], 0, 0, 0};
-                                    // double measest2[6] = {INSRadPos[0], INSRadPos[1], INSRadPos[2], INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-                                    double measurement2[3] = {0, 0, 0};
-                                    // double measurement2[3] = {gpsvel_N, gpsvel_E, 0};
-                                    double measest2[3] = {INSMpsVned[0], INSMpsVned[1], INSMpsVned[2]};
-                                    MatSubtract((double *)measest2, (double *)measurement2, 3, 1, (double *)MeasurementV);
-                                    // MatSubtract((double *)measest2, (double *)measurement2, 6, 1, (double *)MeasurementPV);
-                                    InsKf15_updateV(P_DB, estX, R_zupt2, H_Zupt, MeasurementV, P_DB, estX);
-                                    // InsKf15_updatePV(P_DB, estX, R_PV, H_PV, MeasurementPV, P_DB, estX);
-                                    //InsKf15_updatePV했을 때 잘 됬음 (튜닝값 0.5,0.1,0.5)
+                                    double MeasurementYaw[1] = {INSRadEulr[2] - gps_data[6] * d2r};
+                                    for (int yidx = 0; yidx < 3; yidx++)
+                                    {
+                                        MeasurementYaw[0] = MeasurementYaw[0] - (MeasurementYaw[0] > PI) * (2 * PI) - (MeasurementYaw[0] < -PI) * (-2 * PI);
+                                    }
+                                    InsKf15_updateHgt(P_DB, estX, R_yaw, H_yaw, MeasurementYaw, P_DB, estX);
                                     Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-                                }
-                                else if (gps_data[4] > 5)
-                                {
-                                    double measurement4[4] = {gps_data[1], gps_data[2], gpsvel_N, gpsvel_E};
-                                    double measest4[4] = {INSRadPos[0], INSRadPos[1], INSMpsVned[0], INSMpsVned[1]};
-                                    MatSubtract((double *)measest4, (double *)measurement4, 4, 1, (double *)Measurementlatlonvnve);
-                                    InsKf15_updatelatlonvnve(P_DB, estX, R_latlonvnve, H_latlonVnVe, Measurementlatlonvnve, P_DB, estX);
-                                    Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-                                }
-                                else
-                                {
-                                    double measurement3[2] = {gps_data[1], gps_data[2]};
-                                    double measest3[2] = {INSRadPos[0], INSRadPos[1]};
-                                    MatSubtract((double *)measest3, (double *)measurement3, 2, 1, (double *)Measurementlatlon);
-                                    InsKf15_updatelatlon(P_DB, estX, R_latlon, H_latlon, Measurementlatlon, P_DB, estX);
-                                    Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
-                                    // double measurement4[4] = {gps_data[1], gps_data[2], gpsvel_N, gpsvel_E};
-                                    // double measest4[4] = {INSRadPos[0], INSRadPos[1], INSMpsVned[0], INSMpsVned[1]};
-                                    // MatSubtract((double *)measest4, (double *)measurement4, 4, 1, (double *)Measurementlatlonvnve);
-                                    // InsKf15_updatelatlonvnve(P_DB, estX, R_latlonvnve, H_latlonVnVe, Measurementlatlonvnve, P_DB, estX);
-                                    // Correction(estX, INSRadPos, INSMpsVned, INSQT, INSDCMCbn, Ba, Bg);
                                 }
                             }
                         }
                         parsedPrevious.assign(parsedIMUGPS.begin(), parsedIMUGPS.end());
                     }
                     // if (((linenum - 1) / 3 + 1) % int(BaroIMURatio) == 0 && (linenum - 1) / 3 - validrow > t_finealign * sampleHZ)
-                    if (((linenum + 2) / 3 + 1) % int(BaroIMURatio) == 0)
+                    if (((linenum) + 1) % int(BaroIMURatio) == 0)
                     {
                         Baro_data += mean_BaroOffset;
                         double MeasurementHgt[1] = {INSRadPos[2] - Baro_data};
@@ -416,8 +395,8 @@ int main()
     }
     EstResult.close();
     IMUGPSfile.close();
-    myGPS.close();
-    myhgt.close();
-    myvel.close();
+    // myGPS.close();
+    // myhgt.close();
+    // myvel.close();
     return 0;
 }

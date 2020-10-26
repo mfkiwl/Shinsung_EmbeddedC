@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영
+# Install script for directory: /mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -720,6 +720,46 @@ void InsKf15_updatelatlonvnve(double P_DB[][15], double *estX, double R[][4], do
     VecSum((double *)estX, (double *)updatedX_tmp, 15, (double *)updatedX);
 }
 
+void InsKf15_updatezupt(double P_DB[][15], double *estX, double R[][5], double H[][15], double *measurement, double Pout[][15], double *updatedX)
+{
+    double eyevec[15] = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+    double eyemat[15][15] = {0};
+    double K[15][5], Ktmp1[15][5], K_T[5][15] = {0};
+    double HPb[5][15], H_T[15][5] = {0};
+    double invtmp1[5][5], invtmp2[5][5], inverse[5][5] = {0};
+    double eyeminusKH[15][15], eyeminusKH_tmp[15][15], eyeminusKH_T[15][15] = {0};
+    double KRK[15][15], KRK_tmp1[15][5] = {0};
+    double updatedP_tmp[15][15], updatedP_tmp2[15][15] = {0};
+    double Hx[5], residual[5], updatedX_tmp[15] = {0};
+
+    // calculating Kalman gain
+    diag((double *)eyevec, 15, (double *)eyemat);
+    MatMult((double *)H, (double *)P_DB, (double *)HPb, 5, 15, 15);
+    transpose((double *)H, (double *)H_T, 5, 15);
+    MatMult((double *)HPb, (double *)H_T, (double *)invtmp1, 5, 15, 5);
+    MatSum((double *)invtmp1, (double *)R, 5, 5, (double *)invtmp2);
+    inv_mat((double *)invtmp2, (double *)inverse, 5);
+    MatMult((double *)P_DB, (double *)H_T, (double *)Ktmp1, 15, 15, 5);
+    MatMult((double *)Ktmp1, (double *)inverse, (double *)K, 15, 5, 5);
+
+    // calculating updated P
+    MatMult((double *)K, (double *)H, (double *)eyeminusKH_tmp, 15, 5, 15);
+    MatSubtract((double *)eyemat, (double *)eyeminusKH_tmp, 15, 15, (double *)eyeminusKH);
+    transpose((double *)eyeminusKH, (double *)eyeminusKH_T, 15, 15);
+    transpose((double *)K, (double *)K_T, 15, 5);
+    MatMult((double *)K, (double *)R, (double *)KRK_tmp1, 15, 5, 5);
+    MatMult((double *)KRK_tmp1, (double *)K_T, (double *)KRK, 15, 5, 15);
+    MatMult((double *)eyeminusKH, (double *)P_DB, (double *)updatedP_tmp, 15, 15, 15);
+    MatMult((double *)updatedP_tmp, (double *)eyeminusKH_T, (double *)updatedP_tmp2, 15, 15, 15);
+    MatSum((double *)updatedP_tmp2, (double *)KRK, 15, 15, (double *)Pout);
+
+    // calculating updated state
+    MatMult((double *)H, (double *)estX, (double *)Hx, 5, 15, 1);
+    MatSubtract((double *)measurement, (double *)Hx, 5, 1, (double *)residual);
+    MatMult((double *)K, (double *)residual, (double *)updatedX_tmp, 15, 5, 1);
+    VecSum((double *)estX, (double *)updatedX_tmp, 15, (double *)updatedX);
+}
+
 void Correction(double *estX, double *llh, double *vn, double *quat, double Cbn[][3], double *ba, double *bg)
 {
     // bias 정의를 반대로 해줬기 때문에(estimated F,Wbib = true - bias -> true = estimated + bias) correction도 음수 붙여서

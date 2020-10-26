@@ -1,27 +1,27 @@
 [
 {
-  "directory": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build",
-  "command": "/usr/bin/g++-7   -I\"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/main.cpp.o -c \"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp\"",
-  "file": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/main.cpp"
+  "directory": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
+  "command": "/usr/bin/g++-7   -I\"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/main.cpp.o -c \"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp\"",
+  "file": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/main.cpp"
 },
 {
-  "directory": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build",
-  "command": "/usr/bin/g++-7   -I\"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/function.cpp.o -c \"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/function.cpp\"",
-  "file": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/function.cpp"
+  "directory": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
+  "command": "/usr/bin/g++-7   -I\"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/function.cpp.o -c \"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp\"",
+  "file": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/function.cpp"
 },
 {
-  "directory": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build",
-  "command": "/usr/bin/g++-7   -I\"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/matrix.cpp.o -c \"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/matrix.cpp\"",
-  "file": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/matrix.cpp"
+  "directory": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
+  "command": "/usr/bin/g++-7   -I\"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/matrix.cpp.o -c \"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.cpp\"",
+  "file": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/matrix.cpp"
 },
 {
-  "directory": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build",
-  "command": "/usr/bin/g++-7   -I\"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.o -c \"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/Initialize.cpp\"",
-  "file": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/Initialize.cpp"
+  "directory": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
+  "command": "/usr/bin/g++-7   -I\"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/Initialize.cpp.o -c \"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp\"",
+  "file": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/Initialize.cpp"
 },
 {
-  "directory": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/build",
-  "command": "/usr/bin/g++-7   -I\"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o -c \"/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/ReadIMU.cpp\"",
-  "file": "/mnt/d/OneDrive - SNU/용현/1.공부/2. 기업과제/신성CNT/3 년차/월별 work/10월 회의자료 제작/튜닝고고/신성 C 튜닝용/ver 1. 속도값까지 반영/source/ReadIMU.cpp"
+  "directory": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build",
+  "command": "/usr/bin/g++-7   -I\"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/header\"  -std=c++11 -g   -o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o -c \"/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp\"",
+  "file": "/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/source/ReadIMU.cpp"
 }
 ]
