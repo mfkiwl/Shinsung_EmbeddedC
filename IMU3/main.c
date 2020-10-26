@@ -533,7 +533,6 @@ int align_process()
 	// 10.20.10:31
 	//if (gps_data[4] <= 0.2 || (linenum - validrow) <= t_finealign * sampleHZ)
 	if (linenum - validrow <= sampleHZ * t_finealign){} // finealign 동안 자세 업데이트 하지 않음
-		QuatUpdate(wbnb, 0, INSQT);
 	else
 		QuatUpdate(wbnb, dt, INSQT);
 	//
