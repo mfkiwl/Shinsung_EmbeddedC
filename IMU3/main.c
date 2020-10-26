@@ -344,7 +344,7 @@ void init_data_02()
 
 	float64 pos_err_deviation[3] = {km2rad(5 * 1e-3), km2rad(5 * 1e-3), 10};
 	float64 vel_err_deviation[3] = {noise_v, noise_v, noise_v};
-	float64 att_err_deviation[3] = {a_repeatability / 9.81, a_repeatability / 9.81, 5 * d2r}; //07.27.19:26 debug complete.
+	float64 att_err_deviation[3] = {a_repeatability / 9.81, a_repeatability / 9.81, g_repeatability * mg / We / cos(36 * d2r)}; //07.27.19:26 debug complete.
 
 	float64 PBa[3] = {pow(a_repeatability, 2), pow(a_repeatability, 2), pow(a_repeatability, 2)};
 	float64 PBg[3] = {pow(g_repeatability, 2), pow(g_repeatability, 2), pow(g_repeatability, 2)};
