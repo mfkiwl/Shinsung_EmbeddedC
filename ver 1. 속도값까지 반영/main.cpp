@@ -126,7 +126,7 @@ int main()
     vector<double> parsedPrevious(17, 0); // Zupt실행을 위해 이전 GPS값끼리 비교하기 위한 변수, 0으로 초기화해서 정의.
     // IMUGPSfile.open("../imu20201016_v2.txt");
     // IMUGPSfile.open("../imu_V2_201021.txt");
-    IMUGPSfile.open("../imu20201023_BMI.txt");
+    IMUGPSfile.open("../201027_test2.txt");
     // IMUGPSfile.open("../parsed.txt");
     // IMUGPSfile.open("../imu20200923.txt");
     // RTKGPSfile.open("20191023_RTKGPS.txt");
@@ -151,7 +151,7 @@ int main()
             {
                 if (parsedIMUGPS.size() == 17)
                 {
-                    if (floor(parsedIMUGPS[11]) == 37)
+                    if (floor(parsedIMUGPS[11]) == 34)
                     {
                         dataisincorrect = false;
                         cout << "The first non-trash value is at " << linenum << "th row" << endl;

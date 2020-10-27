@@ -51,6 +51,6 @@ const double PI = 3.141592653589793238463;
 #define noise_v (double)(0.05)
 //======================================================================
 #define t_align 120     // 정렬시간 5분
-#define t_finealign 480 // 정지구간 GPS 결합, t_align 끝난 시점부터 (300~470초)
+#define t_finealign 300 // 정지구간 GPS 결합, t_align 끝난 시점부터 (300~470초)
 //
 #endif
