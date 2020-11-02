@@ -126,7 +126,7 @@ int main()
     vector<double> parsedPrevious(17, 0); // Zupt실행을 위해 이전 GPS값끼리 비교하기 위한 변수, 0으로 초기화해서 정의.
     // IMUGPSfile.open("../imu20201016_v2.txt");
     // IMUGPSfile.open("../imu_V2_201021.txt");
-    IMUGPSfile.open("../201027_test2.txt");
+    IMUGPSfile.open("../20101029_imu1.txt");
     // IMUGPSfile.open("../parsed.txt");
     // IMUGPSfile.open("../imu20200923.txt");
     // RTKGPSfile.open("20191023_RTKGPS.txt");
@@ -144,6 +144,7 @@ int main()
         {
             linenum++; //1부터 셈
             if ((linenum % 3) == 1)
+                // if ((linenum % ) == 1)
                 ReadData(str, parsedIMUGPS);
             else
                 continue;
