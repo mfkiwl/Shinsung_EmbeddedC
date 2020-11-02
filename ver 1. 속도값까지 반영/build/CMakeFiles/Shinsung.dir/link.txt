@@ -1,1 +1,0 @@
-/usr/bin/g++-7  -std=c++11 -g   CMakeFiles/Shinsung.dir/main.cpp.o CMakeFiles/Shinsung.dir/source/function.cpp.o CMakeFiles/Shinsung.dir/source/matrix.cpp.o CMakeFiles/Shinsung.dir/source/Initialize.cpp.o CMakeFiles/Shinsung.dir/source/ReadIMU.cpp.o  -o Shinsung 

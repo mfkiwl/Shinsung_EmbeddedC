@@ -1,3 +1,0 @@
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles/Shinsung.dir
-/mnt/c/Users/yhcho/Desktop/shinsug_git/ver 1. 속도값까지 반영/build/CMakeFiles/edit_cache.dir
