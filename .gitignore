@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 build/
+=======
+/build
+result_posvel.txt
+/.vscode
+>>>>>>> c35594fb0ab86097a4a06aa60bc9f35cd2fab826
